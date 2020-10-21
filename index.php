@@ -31,24 +31,24 @@ class Matrix
 
 class Find extends Matrix
 {
+
     public function horizontally($y)
     {
         $i = 0;
         for ($x = 0; $x < $this->size()[x]; $x++) {
             $data = self::MATRIX[$y][$x];
             if ($data == 1) {
-                $i++;
                 $ship_xy[] = ['y' => $y, 'x' => $x];
                 if ((self::MATRIX[$y][$x + 1]) <= 0) {
                     if ($i <= 1) {
                         array_pop($ship_xy);
-                        $ship_xy = array_filter($ship_xy, "count");
+                        $ship_xy = array_filter($ship_xy);
                     }
                     break;
                 }
             }
         }
-        return $ship_xy; // current position
+                return $ship_xy; // current position
     }
 
     public function vertically($x)
@@ -124,5 +124,6 @@ $ship_coordinates[] = $find->oneDot();
 
 // result
 $function = new Functions();
-$function->dd($ship_coordinates);
+//$function->dd($ship_coordinates);
 
+echo json_encode($ship_coordinates);
